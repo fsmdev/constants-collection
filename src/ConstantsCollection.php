@@ -79,9 +79,18 @@ abstract class ConstantsCollection
     }
 
     /**
+     * @return array
+     */
+    public static function valuesArray()
+    {
+        static::init();
+        return static::$constants;
+    }
+
+    /**
      * @param string $property
      */
-    protected static function init($property)
+    protected static function init($property = '')
     {
         # Init constants list
 
@@ -95,12 +104,14 @@ abstract class ConstantsCollection
 
         # Init property
 
-        if (isset(static::$properties[$property])) {
-            return;
-        }
+        if ($property) {
+            if (isset(static::$properties[$property])) {
+                return;
+            }
 
-        $function = "properties".self::toCamelCase($property);
-        static::$properties[$property] = static::$function();
+            $function = "properties" . self::toCamelCase($property);
+            static::$properties[$property] = static::$function();
+        }
     }
 
     /**
