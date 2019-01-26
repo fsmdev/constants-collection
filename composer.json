@@ -1,0 +1,21 @@
+{
+    "name": "fsmdev/constants-collection",
+    "description": "Constants collection class",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Mozgalov",
+            "email": "fsmdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fsmdev\\ConstantsCollection\\": "src"
+        }
+    }
+}
