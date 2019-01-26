@@ -2,6 +2,9 @@
     "name": "fsmdev/constants-collection",
     "description": "Constants collection class",
     "type": "library",
+    "keywords": [
+        "constants"
+    ],
     "license": "MIT",
     "authors": [
         {
