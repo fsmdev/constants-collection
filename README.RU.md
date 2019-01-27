@@ -1,6 +1,8 @@
 Constants Collection
 =====================
 
+[English](https://github.com/fsmdev/constants-collection/blob/master/README.md) | [Русский](https://github.com/fsmdev/constants-collection/blob/master/README.RU.md)
+
 Простой PHP класс, позволяющий создавать наборы констант, назначать им различные свойства, получать массивы свойств и констант.
 
 ### Установка
