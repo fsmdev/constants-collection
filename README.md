@@ -1,17 +1,17 @@
 Constants Collection
 =====================
 
-Простой PHP класс, позволяющий создавать наборы констант, назначать им различные свойства, получать массивы свойств и констант.
+A simple PHP class that allows you to create collections of constants, assign them properties, get arrays of properties and constants.
 
-### Установка
+### Installation
 
     composer require fsmdev/constants-collection
 
-### Использование
+### Usage
 
-#### Набор констант
+#### Constants collection
 
-Унаследуйте свой класс от **Fsmdev\ConstantsCollection\ConstantsCollection** и определите константы.
+Inherit your class from **Fsmdev\ConstantsCollection\ConstantsCollection** and define constants.
 
 ```php
 use Fsmdev\ConstantsCollection\ConstantsCollection;
@@ -23,6 +23,9 @@ class PostStatus extends ConstantsCollection
     const DELETED = 3;
 }
 ```
+
+Examples of using:
+
 ```php
 $post = new Post();
 $post->status = PostStatus::PUBLISHED;
@@ -37,13 +40,13 @@ class Post
 }
 ```
 
-Для получения массива всех значений констант используйте метод **valuesArray**
+To get an array of constants use the method **valuesArray**
 
     valuesArray () : array
 
-#### Свойства
+#### Properties
 
-Для каждой константы можно задать именованные свойства. Для этого в классе необходимо определить функцию, построенную по маске **properties + CamelCase имя свойства**. Метод должен возвращать массив, ключами которого являются значения констант, а значениями являются значения свойств.
+Named properties can be set for each constant. To do this, it is necessary to define a function in the class that is built according to the mask: **properties + PropertyName (camel case)**. The method must return an array whose keys are the values of the constants, and the values are the values of the properties.
 
 ```php
 # class PostStatus
@@ -67,11 +70,11 @@ protected static function propertiesIndicatorClass()
 }
 ```
 
-Получить свойство значения константы можно с помощью статического метода **property**
+Properties can be obtained using the static method **property**
     
     property ( mixed $value [, string $property = 'name' ] ) : mixed
     
-Пример использования в Blade:
+Usage example (Blade):
     
 ```blade
 Status:
@@ -79,14 +82,18 @@ Status:
     {{ PostStatus::property($post->status) }}
 </span>
 ```
-Получить массив свойств можно с помощью статического метода **propertiesArray**
+You can get an array of properties using the static method **propertiesArray**
 
     propertiesArray ( [ string $property = 'name' ] ) : array
 
-#### Получение значения по свойству
+#### Getting value by property
 
     value ( mixed $value [, string $property = 'name' ] ) : mixed
     
 ```php
 $status = PostStatus::value('Edited');
 ```
+
+### Packagist.org
+
+<https://packagist.org/packages/fsmdev/constants-collection>
