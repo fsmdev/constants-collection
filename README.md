@@ -1,6 +1,8 @@
 Constants Collection
 =====================
 
+[English](https://github.com/fsmdev/constants-collection/blob/master/README.md) | [Русский](https://github.com/fsmdev/constants-collection/blob/master/README.RU.md)
+
 A simple PHP class that allows you to create collections of constants, assign them properties, get arrays of properties and constants.
 
 ### Installation
@@ -24,7 +26,7 @@ class PostStatus extends ConstantsCollection
 }
 ```
 
-Examples of using:
+Examples:
 
 ```php
 $post = new Post();
@@ -74,7 +76,7 @@ Properties can be obtained using the static method **property**
     
     property ( mixed $value [, string $property = 'name' ] ) : mixed
     
-Usage example (Blade):
+Example (Blade):
     
 ```blade
 Status:
