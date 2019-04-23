@@ -35,14 +35,14 @@ abstract class ConstantsCollection
     {
         static::init($property);
 
-        if (!in_array($value, static::$constants, true)) {
+        if (!in_array($value, static::$constants[static::class], true)) {
             return null;
         }
 
-        if (isset(static::$properties[$property][$value])) {
-            $result = static::$properties[$property][$value];
+        if (isset(static::$properties[static::class][$property][$value])) {
+            $result = static::$properties[static::class][$property][$value];
         } else {
-            $result = array_search($value, static::$constants, true);
+            $result = array_search($value, static::$constants[static::class], true);
         }
 
         return $result;
@@ -56,8 +56,8 @@ abstract class ConstantsCollection
     public static function value($value, $property = "name") {
         static::init($property);
 
-        if (isset(static::$properties[$property])) {
-            $result = array_search($value, static::$properties[$property], true);
+        if (isset(static::$properties[static::class][$property])) {
+            $result = array_search($value, static::$properties[static::class][$property], true);
             if ($result === false) {
                 $result = null;
             }
@@ -75,7 +75,7 @@ abstract class ConstantsCollection
     public static function propertiesArray($property = "name")
     {
         static::init($property);
-        return isset(static::$properties[$property]) ? static::$properties[$property] : [];
+        return isset(static::$properties[static::class][$property]) ? static::$properties[static::class][$property] : [];
     }
 
     /**
@@ -84,7 +84,7 @@ abstract class ConstantsCollection
     public static function valuesArray()
     {
         static::init();
-        return static::$constants;
+        return static::$constants[static::class];
     }
 
     /**
@@ -94,23 +94,23 @@ abstract class ConstantsCollection
     {
         # Init constants list
 
-        if (!isset(static::$constants)) {
+        if (!isset(static::$constants[static::class])) {
             try {
-                static::$constants = (new ReflectionClass(static::class))->getConstants();
+                static::$constants[static::class] = (new ReflectionClass(static::class))->getConstants();
             } catch (\ReflectionException $e) {
-                static::$constants = [];
+                static::$constants[static::class] = [];
             }
         }
 
         # Init property
 
         if ($property) {
-            if (isset(static::$properties[$property])) {
+            if (isset(static::$properties[static::class][$property])) {
                 return;
             }
 
             $function = "properties" . self::toCamelCase($property);
-            static::$properties[$property] = static::$function();
+            static::$properties[static::class][$property] = static::$function();
         }
     }
 
