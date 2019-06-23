@@ -123,7 +123,7 @@ abstract class ConstantsCollection
         $result = '';
         $parts = explode('_', $string);
         foreach ($parts as $part) {
-            $result = ucfirst($part);
+            $result .= ucfirst($part);
         }
         return $result;
     }
