@@ -29,9 +29,9 @@ abstract class ConstantsCollection
     /**
      * @param mixed $value
      * @param string $property
-     * @return false|int|null|string
+     * @return mixed
      */
-    public static function property($value, $property = "name")
+    public static function property($value, string $property = "name")
     {
         static::init($property);
 
@@ -39,13 +39,7 @@ abstract class ConstantsCollection
             return null;
         }
 
-        if (isset(static::$properties[static::class][$property][$value])) {
-            $result = static::$properties[static::class][$property][$value];
-        } else {
-            $result = array_search($value, static::$constants[static::class], true);
-        }
-
-        return $result;
+        return static::$properties[static::class][$property][$value] ?? null;
     }
 
     /**
